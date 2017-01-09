@@ -1,5 +1,6 @@
 package com.coolweather.com.coolweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.coolweather.com.coolweather.gson.Forecast;
 import com.coolweather.com.coolweather.gson.Weather;
+import com.coolweather.com.coolweather.service.AutoUpdateService;
 import com.coolweather.com.coolweather.util.HttpUtil;
 import com.coolweather.com.coolweather.util.Utility;
 
@@ -233,5 +235,9 @@ public class activity_weather extends AppCompatActivity {
         sportText.setText(sport);
 
         weatherScrollview.setVisibility(View.VISIBLE);
+
+        // 启动后台服务
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
